@@ -1,0 +1,27 @@
+{
+  "name": "backbone-patient-app",
+  "version": "1.0.0",
+  "description": "Simple UI to Phenotips REST API to interact with patient",
+  "scripts": {
+    "server": "npm run lint && webpack-dev-server --content-base ./static --progress --colors",
+    "bundle": "webpack --progress --colors",
+    "watch": "webpack --watch --progress --colors",
+    "lint": "jscs --config ./.jscsrc ./app/ && jshint --config .jshintrc ./app/"
+  },
+  "keywords": [
+    "webpack",
+    "backbone",
+    "phenotips"
+  ],
+  "author": "Denys Pavlov (@meatcar)",
+  "license": "MIT",
+  "devDependencies": {
+    "backbone": "^1.1.2",
+    "jquery": "^2.1.3",
+    "jscs": "^2.11.0",
+    "jshint": "^2.5.11",
+    "jshint-stylish": "^2.1.0",
+    "webpack": "^1.5.1",
+    "webpack-dev-server": "^1.7.0"
+  }
+}
