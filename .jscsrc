@@ -4,7 +4,7 @@
   "requireSpaceBeforeBlockStatements": true,
   "requireSpacesInConditionalExpression": true,
   "disallowSpacesInCallExpression": true,
-  "requireMultipleVarDecl": "onevar",
+  "requireMultipleVarDecl": false,
   "requireBlocksOnNewline": true,
   "disallowQuotedKeysInObjects": true,
   "requireCommaBeforeLineBreak": true,
