@@ -17,12 +17,19 @@
   "license": "MIT",
   "devDependencies": {
     "backbone": "^1.1.2",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "gridforms": "^1.0.6",
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.1.4",
     "jquery": "^2.2.1",
     "jscs": "^2.11.0",
     "jshint": "^2.5.11",
     "jshint-stylish": "^2.1.0",
+    "node-sass": "^3.4.2",
+    "resolve-url-loader": "^1.4.3",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
     "webpack": "^1.5.1",
     "webpack-dev-server": "^1.7.0"
   }
