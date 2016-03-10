@@ -1,0 +1,21 @@
+{{#with patient}}
+<form class="grid-form">
+    <fieldset>
+        <legend>Patient Information</legend>
+        <div data-row-span="3">
+            <div data-field-span="1">
+                <label>Identifier</label>
+                <input type="text" value={{id}}>
+            </div>
+            <div data-field-span="1">
+                <label>Last Name</label>
+                <input type="text" value={{patient_name.first_name}}>
+            </div>
+            <div data-field-span="1">
+                <label>First Name</label>
+                <input type="text" value={{patient_name.last_name}}>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{{/with}}

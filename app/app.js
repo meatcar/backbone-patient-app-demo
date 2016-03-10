@@ -1,27 +1,16 @@
 require('./sass/main.scss');
-require('./lib/gridforms');
+
+var $ = require('jquery');
 var Backbone = require('backbone');
+Backbone.$ = $;
 
-if (Backbone) {
-  console.log('Loaded!');
-}
+var Router = require('./router');
 
-var IndexView = Backbone.View.extend({
-  el: 'body',
-  template: require('./templates/index.hbs'),
-  render: function () {
-    this.$el.replaceWith($(this.template()));
-    return this;
-  }
+var router = new Router();
+
+router.on('route', function (route, args) {
+  console.info('route', route, args);
 });
 
-var PatientForm = Backbone.View.extend({
-  template: require('./templates/patientform.hbs'),
-  render: function () {
-    this.$el.html(this.template());
-    return this;
-  }
-});
+Backbone.history.start();
 
-var view = new IndexView();
-view.render();

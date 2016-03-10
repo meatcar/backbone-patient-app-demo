@@ -13,7 +13,9 @@ module.exports.module = {
     {
       test: /\.(html|hbs)$/,
       loader: "handlebars-loader",
-      query: {helperDirs: [ path.resolve(__dirname, "app", "templates", "helpers") ]}
+      query: {
+        helperDirs: [path.resolve(__dirname, "app", "handlebars-helpers")]
+      }
     },
     { test: /\.css$/, loader: 'style!css' },
     {
@@ -30,4 +32,4 @@ module.exports.sassLoader = {
   sourceMap: true
 };
 
-//module.exports.devtool = 'eval';
+module.exports.devtool = 'eval';

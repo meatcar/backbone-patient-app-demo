@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple UI to Phenotips REST API to interact with patient",
   "scripts": {
-    "server": "npm run lint && webpack-dev-server --content-base ./static --progress --colors",
+    "server": "npm run lint && webpack-dev-server --content-base ./static --progress --colors --host 0.0.0.0",
     "bundle": "webpack --progress --colors",
     "watch": "webpack --watch --progress --colors",
     "lint": "jscs --config ./.jscsrc ./app/ && jshint --config .jshintrc ./app/"
