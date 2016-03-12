@@ -1,0 +1,55 @@
+{{#with patient}}
+<form class="grid-form">
+    <fieldset>
+        <legend>
+            Patient Information
+            <div class="buttons">
+                <a class="btn save" href="#">Save</a>
+                <a class="btn cancel" href="#">Cancel</a>
+            </div>
+        </legend>
+        <div data-row-span="3">
+            <div data-field-span="1">
+                <label>Identifier</label>
+                <input type="text" value={{id}} disabled>
+            </div>
+            <div data-field-span="1">
+                <label>Last Name</label>
+                <input type="text" name="first_name" value={{patient_name.first_name}}>
+            </div>
+            <div data-field-span="1">
+                <label>First Name</label>
+                <input type="text" name="last_name" value={{patient_name.last_name}}>
+            </div>
+        </div>
+        <div data-row-span="3">
+            <div data-field-span="1">
+                <label>Date of Birth</label>
+                <input type="text" name="date_of_birth" value={{date_of_birth}}>
+            </div>
+            <div data-field-span="1">
+                <label>Date of Death</label>
+                <input type="text" name="date_of_death" value={{date_of_death}}>
+            </div>
+            <div data-field-span="1">
+                <label>Sex</label>
+                <input type="radio" name=sex value=M {{#if_eq sex "M"}}checked{{/if_eq}}> Male
+                <input type="radio" name=sex value=F {{#if_eq sex "F"}}checked{{/if_eq}}> Female
+                <input type="radio" name=sex value=O {{#if_eq sex "O"}}checked{{/if_eq}}> Other
+            </div>
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label>Indication for Referral</label>
+                <input type="text" name="indication_for_referral" value={{notes.indication_for_referral}}>
+            </div>
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label>Features</label>
+                <ul class="features"></ul>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{{/with}}

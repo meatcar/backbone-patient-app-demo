@@ -1,7 +1,6 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
-  el: 'body',
   template: require('./template.hbs'),
   events: {
     'click a': 'route'

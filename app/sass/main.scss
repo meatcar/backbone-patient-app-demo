@@ -1,1 +1,20 @@
 @import "gridforms";
+
+.app {
+  margin: 2em auto;
+  max-width: 720px;
+}
+
+.breadcrumbs {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.buttons {
+  float: right;
+}
+
+.btn {
+  display: inline-block;
+  margin: auto 1em;
+}

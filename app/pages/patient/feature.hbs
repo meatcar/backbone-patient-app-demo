@@ -1,0 +1,5 @@
+<div>
+    <input type=radio name=observed value=yes {{#if_eq feature.observed "yes"}}checked{{/if_eq}}> Y
+    <input type=radio name=observed value=no {{#if_eq feature.observed "no"}}checked{{/if_eq}}> N
+        &mdash; {{feature.label}} ({{feature.id}}) {{feature.observed}}
+</div>

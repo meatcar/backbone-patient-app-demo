@@ -1,14 +1,18 @@
 var Backbone = require('backbone');
 
+var Patients = require('../../patients');
+
 module.exports = Backbone.View.extend({
-  el: '.app',
   template: require('./template.hbs'),
   events: {
     'click a': 'route'
   },
   initialize: function () {
+    this.collection = new Patients();
+
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'error', this.error);
+
     this.collection.fetch({
       reset: true,
       headers: {
