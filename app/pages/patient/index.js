@@ -1,15 +1,26 @@
 var Backbone = require('backbone');
 var Patient = require('../../patient');
 require('../../lib/gridforms');
+var $ = require('jquery');
+var _ = require('lodash');
 
 var FeatureView = require('./feature');
 
+
+/**
+ * Render a single patient, make it editable.
+ */
 module.exports = Backbone.View.extend({
   template: require('./template.hbs'),
+
   events: {
-    'click a': 'route'
+    'click a.save': 'save',
+    'change input': 'inputChange'
   },
+
+  /* the child Feature views, the key is the feature id */
   featureViews: {},
+
   initialize: function (options) {
     this.model = new Patient({id: options.args[0]});
 
@@ -17,12 +28,13 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
 
     this.model.fetch({
-      reset: true,
+      reset: true, // make sure we get a fresh patient
       headers: {
         Authorization: 'Basic ' + btoa('Admin:admin')
       }
     });
   },
+
   render: function () {
     console.info('Patient.render', this.model.toJSON(), arguments);
 
@@ -38,6 +50,8 @@ module.exports = Backbone.View.extend({
             id: feature.id
           });
           this.featureViews[feature.id] = view;
+        } else {
+          view = this.featureViews[feature.id];
         }
 
         $features.append(view.render().$el);
@@ -46,20 +60,45 @@ module.exports = Backbone.View.extend({
 
     return this;
   },
+
+  /* override Backbone's implementation so we can remove thie child views */
   remove: function () {
-    // remove children
     for (var viewName in this.featureViews) {
       this.featureViews[viewName].remove();
     }
 
-    // remove this
-    this.$el.remove();
-    this.stopListening();
+    // call super
+    Backbone.View.prototype.remove.apply(this, arguments);
     return this;
   },
+
+  /* bubble link clicks up */
   route: function (e) {
     var $target = Backbone.$(e.target);
     this.trigger('route', $target.attr('href'), {trigger: true});
     e.preventDefault();
+  },
+
+  /* save the patient */
+  save: function (e) {
+    this.model.save(undefined, {headers: {Authorization: 'Basic ' + btoa('Admin:admin')}});
+    e.preventDefault();
+    return false;
+  },
+
+  /* update the model when the input changes */
+  inputChange: function (e) {
+    var $target = $(e.target);
+    var fieldName = $target.attr('name');
+
+    if (fieldName.match(/first|last/)) {
+      // name is a nested object, special case
+      var name = this.model.get('patient_name');
+      name[fieldName] = $target.val();
+
+      this.model.set('patient_name', _.clone(name));
+    } else {
+      this.model.set(fieldName, $target.val());
+    }
   }
 });

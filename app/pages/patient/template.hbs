@@ -1,7 +1,9 @@
 {{#with patient}}
 <form class="grid-form">
     <fieldset>
-        <legend>
+        <legend class="{{#if_eq sex "M"}}male{{/if_eq}}
+                       {{#if_eq sex "F"}}female{{/if_eq}}
+                       {{#if_eq sex "O"}}other{{/if_eq}}">
             Patient Information
             <div class="buttons">
                 <a class="btn save" href="#">Save</a>
@@ -36,12 +38,6 @@
                 <input type="radio" name=sex value=M {{#if_eq sex "M"}}checked{{/if_eq}}> Male
                 <input type="radio" name=sex value=F {{#if_eq sex "F"}}checked{{/if_eq}}> Female
                 <input type="radio" name=sex value=O {{#if_eq sex "O"}}checked{{/if_eq}}> Other
-            </div>
-        </div>
-        <div data-row-span="1">
-            <div data-field-span="1">
-                <label>Indication for Referral</label>
-                <input type="text" name="indication_for_referral" value={{notes.indication_for_referral}}>
             </div>
         </div>
         <div data-row-span="1">

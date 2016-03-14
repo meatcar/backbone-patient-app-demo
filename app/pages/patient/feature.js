@@ -1,26 +1,38 @@
 var Backbone = require('backbone');
 var _ = require('lodash');
+var $ = require('jquery');
 
+/**
+ * Render a single patient feature
+ */
 module.exports = Backbone.View.extend({
   template: require('./feature.hbs'),
+
   events: {
-    'change input': 'change'
+    'click input': 'click'
   },
+
   initialize: function (options) {
     this.id = options.id;
-    this.listenTo(this.model, 'change:features', this.render);
   },
+
   render: function () {
     this.feature = this.getFeature();
 
     console.info('Patient.Feature.render', this.feature);
 
+    // unbind events on re-render
+    this.undelegateEvents();
     this.$el.html(this.template({
       feature: this.feature
     }));
+    // rebind events on re-render.
+    this.delegateEvents();
 
     return this;
   },
+
+  /* filter the features for the feature we're responsible for */
   getFeature: function () {
     return _(this.model.get('features'))
     .filter(function (feature) {
@@ -28,14 +40,13 @@ module.exports = Backbone.View.extend({
     }, this)
     .first();
   },
-  change: function (e) {
-    var observed = this.$el.find('input[checked]').val();
+
+  click: function (e) {
+    this.feature.observed = $(e.target).val();
+
+    // hack to trigger an event, since the features array is unchanged
     var features = this.model.get('features');
-    features.forEach(function (feature) {
-      if (feature.id === this.id) {
-        feature.observed = observed;
-      }
-    }.bind(this));
-    this.model.set('features', _.clone(features));
+    this.model.unset('features', {silent: true});
+    this.model.set('features', features);
   }
 });

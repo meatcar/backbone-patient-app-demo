@@ -11,7 +11,7 @@
   "requireOperatorBeforeLineBreak": true,
   "requireCamelCaseOrUpperCaseIdentifiers": true,
   "disallowMultipleLineStrings": true,
-  "disallowMultipleLineBreaks":true,
+  "disallowMultipleLineBreaks": false,
   "disallowMixedSpacesAndTabs": "smart",
   "disallowTrailingWhitespace": true,
   "disallowTrailingComma": true,
